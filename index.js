@@ -3,7 +3,7 @@
 var util    = require('util');
 var os      = require('os');
 var winston = require('winston');
-
+var mailer = require('nodemailer');
 
 /**
  * @constructs Mail
@@ -25,7 +25,7 @@ var Mail = exports.Mail = function (options) {
 
     this.handleExceptions = options.handleExceptions || false;
 
-    this.server = email.createTransport(options.transport, options.options || {});
+    this.server = mailer.createTransport(options.transport, options.options || {});
 
 };
 
