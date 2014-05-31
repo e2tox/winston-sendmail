@@ -1,0 +1,32 @@
+{
+  "name": "winston-sendmail",
+  "version": "1.0.0",
+  "description": "An email transport layer for winston",
+  "main": "index.js",
+  "keywords": [
+    "winston",
+    "sendmail",
+    "mailer",
+    "email",
+    "mail"
+  ],
+  "dependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/e2tox/winston-sendmail.git"
+  },
+  "devDependencies": {
+    "winston": "0.7.x",
+    "vows": "*"
+  },
+  "peerDependencies": {
+    "nodemailer": ">=0.6.0 <0.8.0",
+    "winston": ">=0.6.0 <0.8.0"
+  },
+  "author": "e2tox",
+  "license": "BSD",
+  "engines": {
+    "node": ">0.6.0"
+  }
+}
