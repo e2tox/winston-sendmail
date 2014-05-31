@@ -22,7 +22,6 @@ var Mail = exports.Mail = function (options) {
     this.from       = options.from                   || 'winston@' + os.hostname()
     this.level      = options.level                  || 'info';
     this.silent     = options.silent                 || false;
-    this.subject    = options.subject ? template(options.subject) : template('winston: {{level}} {{msg}}')
 
     this.handleExceptions = options.handleExceptions || false;
 
@@ -52,7 +51,7 @@ Mail.prototype.log = function (level, msg, meta, callback) {
     var message = {
         from: this.from,
         to: this.to,
-        subject: this.subject({level: level, msg: msg.split('\n')[0]}),
+        subject: msg.split('\n')[0],
         text: body,
         attachments: []
     };

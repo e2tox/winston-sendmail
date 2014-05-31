@@ -14,3 +14,19 @@ require("winston-sendmail");
 
 winston.add(winston.Transports.Mail, options);
 ```
+
+##Meta
+```javascript
+{
+    error: {
+        message: '',
+        stack: ''
+    },
+    request: {
+        payload: ''
+    },
+    response: {
+        payload: ''
+    }
+}
+```
