@@ -46,7 +46,7 @@ Mail.prototype.log = function (level, msg, meta, callback) {
 
     // add meta info into the body if not empty
     if (meta !== null && meta !== undefined && (typeof meta !== 'object' || Object.keys(meta).length > 0))
-        body += '\n\n' + util.inspect(meta, {showHidden: true, depth: 5}); // add some pretty printing
+        body += '\n\n' + util.inspect(meta, { depth: 7 }); // add some pretty printing
 
     var message = {
         from: this.from,
@@ -64,9 +64,6 @@ Mail.prototype.log = function (level, msg, meta, callback) {
     }
 
     if (meta.request && meta.request.payload) {
-        if (typeof meta.request.payload !== 'string') {
-            meta.request.payload = util.inspect(meta.request.payload, { showHidden: true, depth: 5 });
-        }
         message.attachments.push({   // utf-8 string as an attachment
             fileName: 'raw_request.txt',
             contents: meta.request.payload,
@@ -74,9 +71,6 @@ Mail.prototype.log = function (level, msg, meta, callback) {
     }
 
     if (meta.response && meta.response.payload) {
-        if (typeof meta.response.payload !== 'string') {
-            meta.response.payload = util.inspect(meta.response.payload, { showHidden: true, depth: 5 });
-        }
         message.attachments.push({   // utf-8 string as an attachment
             fileName: 'raw_response.txt',
             contents: meta.response.payload,
@@ -85,12 +79,11 @@ Mail.prototype.log = function (level, msg, meta, callback) {
 
     this.server.sendMail(message, function(err, response) {
         if (err) {
-            self.emit('logged');
+            self.emit('error', err);
         }
         self.emit('logged');
-        callback(null, response);
+        callback(null);
     });
 };
 
 module.exports = winston.transports.Mail = Mail;
-
