@@ -30,3 +30,5 @@ winston.add(winston.Transports.Mail, options);
     }
 }
 ```
+
+Test build
